@@ -14,57 +14,31 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Scaffolding the project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This app replicates the youtube in some respect and uses youtube api.
 
-### `npm run build`
+This app is split up into separate components, all funtion-based. As you have probably, noticed this project is marked as 'v.2'. 'v.1' of this project is built with both, class- and function-based components, and also availbale on github.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This v.2 of the app is fully refactored with funciton-based components and hooks and deployed to production (link is provided in the description of the project part on github).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+First of all, we have a search bar component (SearchBar.js) display at the very top of the screen. The search bar is going to show some text input.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A user can type in there that's going to update a state. And then any time the user hits the enter key, that will trigger a form submit event and send that search term back up to the parent component (App.js), which will then take that search term and do an actual API request.
 
-### `npm run eject`
+Now on the right hand side of the screen, we have a video list that's going to render the entire list of videos (SearchResults.js component).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+And then each of those individual parts of this list I refer to as a video item (SearchItem.js component).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+So a video item is one particular video. All the video items are going to be contained by the video list.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+And then finally, we have the video detail (VideoDetail.js), which we'll be responsible for actually showing a video player that can play the actual YouTube video that has been fetched and the title and description right underneath that.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+So, the component hierarchy should look like this.
 
-## Learn More
+At the top, we have that overarching App component, which is responsible for
+holding all the state of our application, for retrieving a list of videos and for storing whatever the current search term is.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The App is then going to configure the search bar, video detail and video lists by passing props from the app down to each of those. And in turn, the video list will pass some props down to the video item or the collection of videos items that we have in order to properly display each of those separate videos.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Happy hacking!
